@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+    <h2 th:text="${title}"></h2>
+    <a href="/foods/add">Add Food</a>  |  <a href="/foods/remove">Remove Food</a>
+
+    <p th:unless="${foods} and ${foods.size()}">No foods!</p>
+
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Serving Size</th>
+                <th>Calories</th>
+            </tr>
+            </thead>
+        <tbody>
+            <tr th:each="food : ${foods}">
+                <td th:text="${food.name}"></td>
+                <td th:text="${food.servingSize}"></td>
+                <td th:text="${food.calories}"></td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container-fluid">
+
+<h2 th:text="${title}"></h2>
+
+<form method="post">
+    <div class="form-group form-check" th:each="food : ${foods}">
+        <input type="checkbox" class="form-check-input" name="foodIds" th:value="${food.id}" th:id="${food.id}"/>
+        <label class="form-check-label" th:for="${food.id}" th:text="${food.name}"></label>
+    </div>
+    <input type="submit" value="Remove Food" />
+</form>
+
+</body>
+</html>

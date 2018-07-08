@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container-fluid">
+
+    <h2 th:text="${title}"></h2>
+
+    <form method="post">
+        <div class="form-group form-check" th:each="log : ${logs}">
+            <input type="checkbox" class="form-check-input" name="logIds" th:value="${log.id}" th:id="${log.id}"/>
+            <label class="form-check-label" th:for="${log.id}" th:text="${log.date} + ' , ' + ${log.weight}"></label>
+        </div>
+        <input type="submit" value="Remove Log" />
+    </form>
+
+
+</body>
+</html>
