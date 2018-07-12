@@ -2,6 +2,7 @@ package org.launchcode.lifestyletracker.controllers;
 
 import org.launchcode.lifestyletracker.models.Log;
 import org.launchcode.lifestyletracker.models.data.LogDao;
+import org.launchcode.lifestyletracker.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,9 @@ public class LogController {
 
     @Autowired
     private LogDao logDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @RequestMapping(value = "")
     public String index(Model model){

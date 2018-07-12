@@ -1,8 +1,6 @@
 package org.launchcode.lifestyletracker.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -25,6 +23,9 @@ public class Food {
     @NotNull
     @Min(1)
     private int calories;
+
+    @ManyToOne
+    private User user;
 
     public Food() { }
 

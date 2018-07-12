@@ -1,16 +1,15 @@
 package org.launchcode.lifestyletracker.controllers;
 
 import org.launchcode.lifestyletracker.models.Food;
+import org.launchcode.lifestyletracker.models.User;
 import org.launchcode.lifestyletracker.models.data.FoodDao;
 import org.launchcode.lifestyletracker.models.data.LogDao;
+import org.launchcode.lifestyletracker.models.data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -23,11 +22,18 @@ public class FoodController {
     public FoodDao foodDao;
 
     @Autowired
-    public LogDao logDao;
+    private LogDao logDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @RequestMapping(value = "")
-    public String index(Model model){
-        model.addAttribute("foods", foodDao.findAll());
+    public String index(Model model, @CookieValue(value = "user", defaultValue = "none") String username){
+        if (username.equals("none")){
+            return "redirect:/user/login";
+        }
+        User u = userDao.findByUsername(username).get(0);
+        model.addAttribute("foods", u.getFoods());
         model.addAttribute("title", "My Food List");
         return "foods/index";
     }
@@ -50,8 +56,13 @@ public class FoodController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemoveFoodForm(Model model){
-        model.addAttribute("foods", foodDao.findAll());
+    public String displayRemoveFoodForm(Model model,
+                                        @CookieValue(value = "user", defaultValue = "none") String username){
+        if (username.equals("none")){
+            return "redirect:/user/login";
+        }
+        User u = userDao.findByUsername(username).get(0);
+        model.addAttribute("foods", u.getFoods());
         model.addAttribute("title", "Remove a Food");
         return "foods/remove";
     }

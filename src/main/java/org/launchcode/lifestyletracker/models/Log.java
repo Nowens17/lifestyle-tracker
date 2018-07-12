@@ -1,9 +1,7 @@
 package org.launchcode.lifestyletracker.models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,6 +17,9 @@ public class Log {
 
     @NotNull
     private double weight;
+
+    @ManyToOne
+    private User user;
 
     public Log(){}
 

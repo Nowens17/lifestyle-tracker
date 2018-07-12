@@ -1,7 +1,12 @@
 package org.launchcode.lifestyletracker.models;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
+@Entity
 
 public class User {
 
@@ -12,6 +17,14 @@ public class User {
 
     @NotNull
     private String password;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Log> logs;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Food> foods;
 
     public String getUsername() {
         return username;
@@ -35,5 +48,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public List<Food> getFoods() {
+        return foods;
     }
 }
