@@ -1,21 +1,30 @@
 package org.launchcode.lifestyletracker.models;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+
+import org.hibernate.validator.constraints.Email;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-
 public class User {
 
+    @Id
+    @GeneratedValue
+    private int id;
+
     @NotNull
+    @Size(min = 1, max = 15, message = "Username must contain between 1 and 15 characters")
     private String username;
 
+    @Email
     private String email;
 
     @NotNull
+    @Size(min = 6)
     private String password;
 
     @OneToMany
@@ -25,6 +34,8 @@ public class User {
     @OneToMany
     @JoinColumn(name = "user_id")
     private List<Food> foods;
+
+    public User(){}
 
     public String getUsername() {
         return username;

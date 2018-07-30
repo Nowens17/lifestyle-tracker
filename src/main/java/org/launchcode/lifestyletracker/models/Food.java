@@ -29,8 +29,7 @@ public class Food {
 
     public Food() { }
 
-    public Food(int id, String date, String name, double servingSize, int calories) {
-        this.id = id;
+    public Food(String date, String name, double servingSize, int calories) {
         this.name = name;
         this.servingSize = servingSize;
         this.calories = calories;
@@ -63,4 +62,6 @@ public class Food {
     public void setCalories(int calories) {
         this.calories = calories;
     }
+
+    public void setUser(User u) {this.user = u;}
 }

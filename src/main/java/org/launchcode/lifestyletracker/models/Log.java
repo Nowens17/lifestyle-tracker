@@ -47,4 +47,6 @@ public class Log {
     public void setWeight(double weight) {
         this.weight = weight;
     }
+
+    public void setUser(User u) {this.user = u;}
 }
