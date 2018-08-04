@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+    <h1>Test Calendar</h1>
+    <hr />
+
+    <div id="test-instance" class="js-calendar">
+
+    </div>
+
+    <div id="errorWrapper" style="color:#999;">
+        No uncaught error!
+    </div>
+
+    <pre id="stateOutput">
+        [State}
+    </pre>
+
+    <script src="./dev/debug.js"></script>
+    <script src="./dist/js-calendar.js"></script>
+    <script>
+        JSCalendar.on('new', function(cal, xtra) {
+            _jscallog("Class level hook caught for instance with id " + cal.id)
+        });
+
+        var today = new Date();
+
+        var matrix = {};
+        matrix{today.getFullYear()] = {};
+        matrix[today.getFullYear()][today.getMonth()] = {
+            "5" : [(displayname : "You can't miss this event", color : "#792aca"}],
+            "12" : [
+                {
+                    displayname : "A very important meeting",
+                    at : new Date(today.getFullYear(), today.getMonth(), 12, 15, 30).getTime()
+                },
+                {
+                    displayname : "A somewhat important 2 hour meeting",
+                    color : "rgb(113, 180, 193)",
+                    at : new Date(today.getFullYear(), today.getMonth(), 12, 17, 30).getTime(),
+                    duration : 1000 * 60 * 60 * 2
+                },
+                {
+                    displayname : This meeting is so important it's red",
+                    color : "#9c3d27",
+                    at : new Date(today.getFullYear(), today.getMonth(), 12, 21, 55).toString()
+                }
+            ],
+            "15" : [
+                {
+                    displayname : "Something else to do here",
+                    at : new Date(0, 0, 0, 9, 30).toString()
+                },
+                {
+                    displayname : "Similar Event",
+                    at : new Date(0, 0, 0, 9, 50).toString();
+    </script>
+
+
+
+</body>
+</html>

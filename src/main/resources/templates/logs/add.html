@@ -8,12 +8,12 @@
         <span>
         <div class="form-group">
             <label th:for="date">Date</label>
-            <input type="date" class="form-control-lg" th:field="*{date}" />
+            <input type="date" class="form-control-lg" name="date" th:field="*{date}" />
             <span th:errors="*{date}" class="error"></span>
         </div>
         <div class="form-group">
             <label th:for="weight">Weight</label>
-            <input type="text" class="form-control-lg" th:field="*{weight}" />
+            <input type="text" class="form-control-lg" name="weight" th:field="*{weight}" />
             <span th:errors="*{weight}" class="error"></span>
         </div>
         <input type="submit" value="Add Log" />

@@ -8,17 +8,17 @@
         <span>
         <div class="form-group">
             <label th:for="name">Name</label>
-            <input type="text" class="form-control-lg" th:field="*{name}"/>
+            <input type="text" class="form-control-lg" name="name" th:field="*{name}"/>
             <span th:errors="*{name}" class="error"></span>
         </div>
         <div class="form-group">
             <label th:for="servingSize">Serving Size</label>
-            <input type="text" class="form-control-lg" th:field="*{servingSize}"/>
+            <input type="text" class="form-control-lg" name="servingSize" th:field="*{servingSize}"/>
             <span th:errors="*{servingSize}" class="error"></span>
         </div>
         <div class="form-group">
             <label th:for="calories">Calories</label>
-            <input type="text" class="form-control-lg" th:field="*{calories}"/>
+            <input type="text" class="form-control-lg" name="calories" th:field="*{calories}"/>
             <span th:errors="*{calories}" class="error"></span>
         </div>
         <input type="submit" value="Add Food" />
