@@ -56,9 +56,57 @@
                 {
                     displayname : "Similar Event",
                     at : new Date(0, 0, 0, 9, 50).toString();
+
+                };
+            ]
+        };
+
+        var calendar = new JSCalendar(document.getElementById('test-instance'),{
+            titleCropSize : 30;
+            eventBackground : "rgb(193, 155, 113)"
+        });
+        calendar.init();
+
+        var todayEventTime = new Date();
+        todayEventTime = new Date(todayEventTime.getFullYear(),
+        todayEventTime.getMonth(),
+        todayEventTime.getDate(),
+        10, 0 , 0
+        );
+
+        var tomorrowEventTime = new Date(todayEventTime.getTime() + (1000 * 60 * 60 * 24));
+
+        calendar.on('willRender', function(){
+            var titleBar = calendar.elem.querySelector('.control-bar-title');
+            titleBar.style.fontWeight = (
+                calendar.state.month == today.getMonth() &&
+                calendar.state.year == today.getFullYear()
+                )? "bold" : "";
+
+        }).on('rendered', function() {
+            document.getElementById('stateOutput').textContent = JSON.stringify(inst.debug(), null, 4);
+
+        }).on('cellMoved', function(inst) {
+            document.getElementById('stateOutput').textContent = JSON.stringify(inst.debug(), null, 4);
+
+        }).setMatrix( matrix ).push({
+            at : todayEventTime,
+            event : {
+                displayname : "Something to do today",
+                color : "rgb(193, 113, 167)",
+                duration : 1000 * 60 * 60 * 2,
+                at : todayEventTime
+            }
+        }).push({
+            at : tomorrowEventTime,
+            event : {
+                displayname : "Something to do tomorrow",
+                color : "rgb(113, 193, 132)",
+                duration : 1000 * 60 * 60,
+                at : tomorrowEventTime
+            }
+        }).render();
+
     </script>
-
-
-
 </body>
 </html>
