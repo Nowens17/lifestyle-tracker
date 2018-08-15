@@ -27,9 +27,9 @@
         var today = new Date();
 
         var matrix = {};
-        matrix{today.getFullYear()] = {};
+        matrix[today.getFullYear()] = {};
         matrix[today.getFullYear()][today.getMonth()] = {
-            "5" : [(displayname : "You can't miss this event", color : "#792aca"}],
+            "5" : [{displayname : "You can't miss this event", color : "#792aca"}],
             "12" : [
                 {
                     displayname : "A very important meeting",
@@ -42,7 +42,7 @@
                     duration : 1000 * 60 * 60 * 2
                 },
                 {
-                    displayname : This meeting is so important it's red",
+                    displayname : "This meeting is so important it's red",
                     color : "#9c3d27",
                     at : new Date(today.getFullYear(), today.getMonth(), 12, 21, 55).toString()
                 }
@@ -54,14 +54,31 @@
                 },
                 {
                     displayname : "Similar Event",
-                    at : new Date(0, 0, 0, 9, 50).toString();
-
-                };
+                    at : new Date(0, 0, 0, 9, 50).toString(),
+                    duration : 1000 * 60 * 10,
+                    color : "#5198da"
+                }
+            ],
+            "16" : [{displayname : "Something to do here"}],
+            "17" : [{at : new Date(0, 0, 0, 10, 25).getTime()}],
+            "26" : [
+                {
+                    displayname : "An event by then end of the month",
+                    at : new Date(0, 0, 0, 9)
+                }
+            ],
+            "27" : [
+                {
+                    displayname : "Short monthly recap meeting",
+                    at : new Date(0, 0, 0, 15, 30),
+                    color : "rgb(113, 180, 193)",
+                    duration : 1000 * 60 * 30
+                }
             ]
         };
 
         var calendar = new JSCalendar(document.getElementById('test-instance'),{
-            titleCropSize : 30;
+            titleCropSize : 30,
             eventBackground : "rgb(193, 155, 113)"
         });
         calendar.init();
@@ -78,11 +95,11 @@
         calendar.on('willRender', function(){
             var titleBar = calendar.elem.querySelector('.control-bar-title');
             titleBar.style.fontWeight = (
-                calendar.state.month == today.getMonth() &&
+                calendar.state.month == today.getMonth() &amp;&amp;
                 calendar.state.year == today.getFullYear()
-                )? "bold" : "";
+                ) ? "bold" : "";
 
-        }).on('rendered', function() {
+        }).on('rendered', function(inst) {
             document.getElementById('stateOutput').textContent = JSON.stringify(inst.debug(), null, 4);
 
         }).on('cellMoved', function(inst) {
