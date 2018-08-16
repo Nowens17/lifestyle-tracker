@@ -14,12 +14,14 @@
     </div>
 
     <pre id="stateOutput">
-        [State}
+        [State]
     </pre>
 
     <script src="./dev/debug.js"></script>
     <script src="./dist/js-calendar.js"></script>
     <script>
+    //<![CDATA[
+
         JSCalendar.on('new', function(cal, xtra) {
             _jscallog("Class level hook caught for instance with id " + cal.id)
         });
@@ -95,7 +97,7 @@
         calendar.on('willRender', function(){
             var titleBar = calendar.elem.querySelector('.control-bar-title');
             titleBar.style.fontWeight = (
-                calendar.state.month == today.getMonth() &amp;&amp;
+                calendar.state.month == today.getMonth() &&
                 calendar.state.year == today.getFullYear()
                 ) ? "bold" : "";
 
@@ -122,7 +124,7 @@
                 at : tomorrowEventTime
             }
         }).render();
-
+    //]]>
     </script>
 
 </body>
